@@ -1,0 +1,158 @@
+/**
+ * @name Duncan's theme
+ * @author duncannah
+ * @version 1.0.0
+ * @source https://github.com/duncannah/discord-theme
+*/
+
+$font-size-modifier: 0.9375;
+
+@import "__gen/overwrite.scss";
+@import "syntax-highlighting/tokyo-night-dark.scss";
+
+@function class($selector) {
+	@return '[class^="#{$selector}-"], [class*=" #{$selector}-"]';
+}
+
+@font-face {
+	font-family: "JetBrainsMono";
+	src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2")
+			format("woff2"),
+		url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff")
+			format("woff"),
+		url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/ttf/JetBrainsMono-Regular.ttf")
+			format("truetype");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Visitor";
+	src: url("b64---visitor.ttf---") format("truetype");
+}
+
+:root {
+	--font-primary: -apple-system, BlinkMacSystemFont, "Helvitica Neue", Helvetica, sans-serif;
+	--font-pixel: Visitor;
+	--font-code: JetBrainsMono, ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+		"Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono",
+		"Droid Sans Mono", "Courier New", monospace;
+	--font-display: var(--font-code);
+	--font-headline: var(--font-display);
+	// --font-korean: Whitney,"Apple SD Gothic Neo",NanumBarunGothic,"맑은 고딕","Malgun Gothic",Gulim,굴림,Dotum,돋움,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	// --font-japanese: Whitney,"Hiragino Sans","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN",メイリオ,Meiryo,Osaka,"MS PGothic","Helvetica Neue",Helvetica,Arial,sans-serif;
+	// --font-chinese-simplified: Whitney,"Microsoft YaHei New",微软雅黑,"Microsoft Yahei","Microsoft JhengHei",宋体,SimSun,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	// --font-chinese-traditional: Whitney,"Microsoft JhengHei",微軟正黑體,"Microsoft JhengHei UI","Microsoft YaHei",微軟雅黑,宋体,SimSun,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+// No idea why this isn't in the original
+code {
+	font-family: var(--font-code);
+}
+
+#{class("role")},
+.pixelTxt {
+	font-family: var(--font-pixel) !important;
+	font-size: 10px;
+	text-rendering: geometricPrecision;
+}
+
+// TODO: style the syntax highlighting
+
+// a,
+// [class^="username-"]
+#{class("timestamp")}, // timestamp
+#{class("role")}, // role
+#{class("button")}, // button
+#{class("divider")}, // divider with time
+button,
+.displayTxt {
+	font-family: var(--font-display);
+	text-transform: uppercase;
+}
+
+#{class("tooltip")}, // tooltip
+#{class("imageDetails")} // PLUGIN: image details
+{
+	font-family: var(--font-display);
+}
+
+// #{class("role")},
+
+//  {
+// 	@extend .pixelTxt;
+// }
+
+#{class("creationDate")} // PLUGIN: creation time
+{
+	@extend .displayTxt;
+	font-size: 12px;
+	opacity: 0.5;
+}
+
+//// Role indicator
+#{class("role")} {
+	position: relative;
+	overflow: hidden;
+}
+
+// To the side
+#{class("role")} {
+	padding-left: 0;
+
+	#{class("roleCircle")} {
+		border-radius: 0;
+		margin: 0 8px 0 0;
+		height: 22px; // TODO: could be dynamic?
+	}
+}
+// To the bottom
+// TODO: this makes the roles too small
+// #{class("role")} {
+// 	padding-bottom: 8px; // was 4px
+
+// 	[role="button"] {
+// 		position: absolute;
+// 		bottom: 0;
+// 		left: 0;
+// 		right: 0;
+// 		width: 100%;
+// 		height: 4px;
+// 		overflow: hidden;
+
+// 		#{class("roleCircle")} {
+// 			border-radius: 0;
+// 			margin: 0;
+// 			width: 100%;
+// 		}
+// 	}
+
+// 	#{class("roleName")} {
+// 		margin: 0;
+// 	}
+// }
+
+//// Backdrop
+#{class("backdrop")} {
+	backdrop-filter: blur(10px);
+
+	// Lighten it
+	background: rgba(0, 0, 0, 0.85) !important;
+}
+
+#{class("appMount")},
+body {
+	// zoom: 95%;
+	// letter-spacing: -0.025em;
+	text-rendering: geometricPrecision !important;
+}
+
+// [class^="markup-"],
+// [class^="timestamp-"] {
+// 	// font-weight: 300;
+// }
+
+// Fix aliasing
+#{class("didRender")} {
+	transform: rotateZ(360deg) !important;
+}

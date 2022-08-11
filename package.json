@@ -1,0 +1,22 @@
+{
+	"name": "discord-theme",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"start": "node src/index.js",
+		"dev": "nodemon --watch \"src/**\" -e \"scss,js,ts\" --ignore \"__gen/**\" -q src/index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "AGPL-3.0",
+	"dependencies": {
+		"dotenv": "^16.0.1",
+		"postcss": "^8.4.16",
+		"postcss-inline-base64": "^7.2.2",
+		"prettier": "^2.7.1",
+		"sass": "^1.54.3"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.19"
+	}
+}
