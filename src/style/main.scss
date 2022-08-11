@@ -52,9 +52,11 @@ code,
 }
 
 #{class("role")},
+#{class("unreadPill")},
 .pixelTxt {
 	font-family: var(--font-pixel) !important;
 	font-size: 10px;
+	font-weight: 400 !important;
 	text-rendering: geometricPrecision;
 }
 
