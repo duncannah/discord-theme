@@ -149,3 +149,8 @@ button,
 body {
 	text-rendering: geometricPrecision !important;
 }
+
+// Fix message timestamp being too close to the username
+#{class("message")} #{class("roleIcon")} {
+	margin-right: 1px;
+}
