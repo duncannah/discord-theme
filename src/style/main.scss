@@ -46,8 +46,9 @@ $font-size-modifier: 0.9375;
 }
 
 // No idea why this isn't in the original
-code {
-	font-family: var(--font-code);
+code,
+#{class("inlineCode")} {
+	font-family: var(--font-code) !important;
 }
 
 #{class("role")},
