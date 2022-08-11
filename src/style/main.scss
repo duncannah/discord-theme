@@ -55,9 +55,10 @@ code,
 #{class("unreadPill")},
 .pixelTxt {
 	font-family: var(--font-pixel) !important;
-	font-size: 10px;
+	font-size: 10px !important;
 	font-weight: 400 !important;
 	text-rendering: geometricPrecision;
+	transform: rotateZ(360deg) !important;
 }
 
 // TODO: style the syntax highlighting
@@ -79,12 +80,6 @@ button,
 {
 	font-family: var(--font-display);
 }
-
-// #{class("role")},
-
-//  {
-// 	@extend .pixelTxt;
-// }
 
 #{class("creationDate")} // PLUGIN: creation time
 {
@@ -152,17 +147,5 @@ button,
 
 #{class("appMount")},
 body {
-	// zoom: 95%;
-	// letter-spacing: -0.025em;
 	text-rendering: geometricPrecision !important;
-}
-
-// [class^="markup-"],
-// [class^="timestamp-"] {
-// 	// font-weight: 300;
-// }
-
-// Fix aliasing
-#{class("didRender")} {
-	transform: rotateZ(360deg) !important;
 }
