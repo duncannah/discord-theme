@@ -8,7 +8,7 @@ const path = require("node:path");
 if (typeof process.env.DEPLOY_PATH !== "string") throw new Error("DEPLOY_PATH is not defined");
 
 (async () => {
-	await fs.mkdir(path.join(__dirname, "style/__gen"));
+	await fs.mkdir(path.join(__dirname, "style/__gen")).catch(() => null);
 
 	await overwrite(path.join(__dirname, "style/__gen", "overwrite.scss"));
 
