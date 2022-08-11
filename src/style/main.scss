@@ -151,6 +151,8 @@ body {
 }
 
 // Fix message timestamp being too close to the username
-#{class("message")} #{class("roleIcon")} {
-	margin-right: 1px;
+#{class("message")} {
+	#{class("roleIcon")} {
+		margin-right: 1px;
+	}
 }
