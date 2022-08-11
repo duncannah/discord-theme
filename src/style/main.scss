@@ -87,14 +87,14 @@ button,
 	// font-size: 12px;
 	opacity: 0.5;
 
-	margin-top: -2px !important;
+	margin-top: 6px !important;
 	margin-bottom: -5px !important;
 	line-height: 1;
 
 	@at-root {
 		#{class("topSection")} {
 			#{class("creationDate")} {
-				margin-top: -22px !important;
+				margin-top: -15px !important;
 				margin-bottom: 10px !important;
 			}
 		}
