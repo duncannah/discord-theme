@@ -26,4 +26,6 @@ if (typeof process.env.DEPLOY_PATH !== "string") throw new Error("DEPLOY_PATH is
 	await fs.writeFile(`${process.env.DEPLOY_PATH}/duncan.theme.css`, postOut.css);
 
 	console.log(`- Successfully transpiled at ${new Date().toISOString()}`);
-})();
+})().catch((e) => {
+	console.error(e);
+});

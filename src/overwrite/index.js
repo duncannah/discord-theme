@@ -109,6 +109,8 @@ module.exports = async function (outPath) {
 
 	let blocks = file.matchAll(/([^{}%]+) *{(.*?)}/g);
 
+	let variables = [];
+
 	function parseBlock(block) {
 		let selector = block[1].replace(/\n/g, " ").trim();
 		let match = block[2].matchAll(/([a-z0-9-]+?):(.*?)(?:;|$)/gi);
@@ -135,6 +137,10 @@ module.exports = async function (outPath) {
 			}
 
 			if (rulz && rulz.length) {
+				for (const rule of rulz) {
+					if (rule.startsWith("--")) variables.push(rule.substring(2));
+				}
+
 				rules.push([selector, rulz]);
 			}
 		}
@@ -144,7 +150,11 @@ module.exports = async function (outPath) {
 		parseBlock(block);
 	}
 
-	let out = "";
+	let out = "/** GENERATED FILE; DO NOT EDIT **/\n\n\n";
+
+	for (const vars of variables) {
+		out += `\$${vars};\n`;
+	}
 
 	for (const [selector, properties] of rules) {
 		if (selector.startsWith("&")) {
