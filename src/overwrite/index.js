@@ -121,6 +121,8 @@ module.exports = async function (outPath) {
 		// TODO: handle animations
 		if (selector.startsWith(",")) return;
 
+		if (selector.includes(".theme-light") && !selector.includes(".theme-dark")) return;
+
 		if (match) {
 			let rulz = [];
 			for (let property of match) {
