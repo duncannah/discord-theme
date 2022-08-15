@@ -152,12 +152,12 @@ button,
 // }
 
 //// Vibrancy effects
-@mixin vibrancy($bg: $background-floating-bg, $fade: 0.5) {
-	background: fade-out($color: $bg, $amount: $fade) !important;
+@mixin vibrancy($bg: $background-floating-bg, $fade: 0.5, $property: "background") {
+	#{$property}: fade-out($color: $bg, $amount: $fade) !important;
 	backdrop-filter: blur(20px);
 }
 
-@mixin vibrancyPsuedo($bg: $background-floating-bg, $fade: 0.5) {
+@mixin vibrancyPsuedo($bg: $background-floating-bg, $fade: 0.5, $property: "background") {
 	// Thanks https://stackoverflow.com/a/70969126
 	background: transparent;
 
@@ -171,7 +171,7 @@ button,
 		border-radius: inherit;
 		z-index: -1;
 
-		@include vibrancy($bg, $fade);
+		@include vibrancy($bg, $fade, $property);
 	}
 }
 
@@ -196,6 +196,10 @@ button,
 
 	#{class("bodyInnerWrapper")} {
 		background-color: transparent !important;
+	}
+
+	#{class("tooltipPointer")} {
+		@include vibrancy($property: "border-top-color");
 	}
 }
 
