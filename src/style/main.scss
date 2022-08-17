@@ -177,6 +177,10 @@ button,
 #{class("contentWrapper")} {
 	@include vibrancyPsuedo();
 
+	#{class("bodyInnerWrapper")} {
+		background-color: transparent !important;
+	}
+
 	#{class("searchBar")} {
 		@include vibrancy($background-tertiary-bg, 0.85);
 	}
