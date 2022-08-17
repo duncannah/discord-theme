@@ -42,16 +42,20 @@ const specialCases = [
 			(match, type, hue, saturation, lightness, alpha) => {
 				if (parseFloat(saturation) <= 10) return match;
 
-				if (hue >= 190 && hue <= 250) {
+				if (
+					(hue >= 190 && hue <= 250) ||
+					hue == 38 || // mentionned
+					hue == 139 // "positive" text
+				) {
 					// hue = parseInt(hue) + 40;
-					hue = 270;
+					hue = "$custom-hue";
 				} else return match;
 
 				// no % next to lightness bc we haven't touched it
 
-				return `${type}(${hue}, ${saturation}, ${lightness} ${
+				return `#{${type}(${hue}, ${saturation}, ${lightness} ${
 					typeof alpha !== "undefined" ? `, ${alpha}` : ""
-				})`;
+				})}`;
 			}
 		);
 

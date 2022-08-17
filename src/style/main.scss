@@ -6,6 +6,7 @@
 */
 
 $font-size-modifier: 0.9375;
+$custom-hue: 270;
 
 @import "__gen/overwrite.scss";
 @import "syntax-highlighting/tokyo-night-dark.scss";
@@ -98,6 +99,21 @@ button,
 			}
 		}
 	}
+}
+
+//// Make stuff use custom color
+// hue-rotate sucks: https://stackoverflow.com/a/19325417
+[style*="color: hsl(139"], // Checkboxes, because JS is used
+.bd-switch, // BD switches
+#{class("lockIcon")} // Lock icon next to 2FA indicator, because external SVG
+{
+	filter: hue-rotate(135deg);
+}
+
+.bd-button, // BD buttons
+.bd-toast.toast-success // BD toast
+{
+	background-color: hsl($custom-hue 76% 57%);
 }
 
 //// Role indicator
