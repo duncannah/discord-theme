@@ -130,13 +130,22 @@ button,
 	#{class("roleCircle")},
 	#{class("roleColor")} {
 		border-radius: 0;
-		margin: 0 8px 0 0;
+		margin: 0;
 		height: 22px; // TODO: could be dynamic?
+	}
+
+	#{class("roleName")} {
+		margin-left: 8px;
 	}
 
 	// fix plus button
 	svg {
 		margin-left: 4px;
+	}
+
+	// fix remove button for role
+	#{class("roleRemoveIcon")} {
+		margin-left: -5px;
 	}
 }
 // To the bottom
