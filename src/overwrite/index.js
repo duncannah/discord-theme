@@ -1,11 +1,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const fetchCss = require("./fetch-css");
-
-// utils
-function checkIfStringStartsWith(str, substrs) {
-	return substrs.some((substr) => str.startsWith(substr));
-}
+const { checkIfStringStartsWith, forEveryColor } = require("./util");
 
 const specialCases = [
 	(property) => {
@@ -37,32 +33,24 @@ const specialCases = [
 	(property) => {
 		const arr = [];
 		// replace discord colors with our own
-		let newVal = property.value.replace(
-			/(hsla?)\((?:([\d\.%]+)[, ]+)(?:([\d\.%]+)[, ]+)(?:([\d\.%]+)[,\)])(?:([\d\.%]+) *\))?/gi,
-			(match, type, hue, saturation, lightness, alpha) => {
-				if (parseFloat(saturation) <= 10) return match;
+		let newVal = forEveryColor(property.value, ({ hue, saturation, lightness, alpha }) => {
+			if (saturation <= 10) return;
 
-				if (
-					(hue >= 190 && hue <= 250) ||
-					hue == 38 || // mentionned
-					hue == 139 // "positive" text
-				) {
-					// hue = parseInt(hue) + 40;
-					hue = "$custom-hue";
-				} else return match;
+			if (
+				(hue >= 190 && hue <= 250) ||
+				hue === 38 || // mentionned
+				hue === 139 // "positive" text
+			) {
+				hue = "$custom-hue";
+			} else return;
 
-				// no % next to lightness bc we haven't touched it
-
-				return `#{${type}(${hue}, ${saturation}, ${lightness} ${
-					typeof alpha !== "undefined" ? `, ${alpha}` : ""
-				})}`;
-			}
-		);
+			return [hue, saturation, lightness, alpha];
+		});
 
 		if (newVal !== property.value) {
-			arr.push(`${property.name}: ${newVal}`);
+			arr.push(`${property.name}: #{${newVal}}`);
 
-			if (property.name.startsWith("--")) arr.push(`${property.name}-bg: ${newVal}`);
+			if (property.name.startsWith("--")) arr.push(`${property.name}-bg: #{${newVal}}`);
 		}
 
 		return arr;
@@ -70,22 +58,19 @@ const specialCases = [
 	(property) => {
 		const arr = [];
 
-		let newVal = property.value.replace(
-			/(hsla?)\((?:([\d\.%]+)[, ]+)(?:([\d\.%]+)[, ]+)(?:([\d\.%]+)[,\)])(?:([\d\.%]+) *\))?/gi,
-			(match, type, hue, saturation, lightness, alpha) => {
-				if (parseFloat(saturation) >= 10) return match;
+		// TODO: fix container-3wLKDe which has hardcoded hex value
 
-				let darkening = 0.5;
+		let newVal = forEveryColor(property.value, ({ hue, saturation, lightness, alpha }) => {
+			if (saturation >= 10) return;
 
-				lightness = parseFloat(lightness) * darkening;
+			let darkening = 0.5;
 
-				if (type === "hsla") alpha = parseFloat(alpha) * darkening;
+			lightness = lightness * darkening;
 
-				return `${type}(${hue}, ${saturation}, ${lightness}% ${
-					typeof alpha !== "undefined" ? `, ${alpha}` : ""
-				})`;
-			}
-		);
+			if (alpha !== 1) alpha = alpha * darkening;
+
+			return [hue, saturation, lightness, alpha];
+		});
 
 		if (newVal !== property.value) {
 			if (property.name.startsWith("--")) arr.push(`${property.name}-bg: ${newVal}`);

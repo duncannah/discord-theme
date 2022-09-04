@@ -11,6 +11,7 @@
 	"license": "AGPL-3.0",
 	"dependencies": {
 		"dotenv": "^16.0.1",
+		"parse-css-color": "^0.2.1",
 		"postcss": "^8.4.16",
 		"postcss-inline-base64": "^7.2.2",
 		"prettier": "^2.7.1",
