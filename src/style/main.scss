@@ -213,6 +213,12 @@ button,
 		@include vibrancy($background-tertiary-bg, 0.85);
 	}
 
+	#{class("customItem")} {
+		#{class("button")} {
+			@include vibrancy($background-tertiary-bg, 0.5);
+		}
+	}
+
 	#{class("header")},
 	#{class("packHeader")} {
 		@include vibrancy($background-secondary-bg, 1);
