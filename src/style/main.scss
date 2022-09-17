@@ -225,20 +225,6 @@ button,
 	}
 }
 
-#{class("tooltipPrimary")}
-// #{class("userPopout")} // can't use this because https://bugs.chromium.org/p/chromium/issues/detail?id=1194050
-{
-	@include vibrancy();
-
-	#{class("bodyInnerWrapper")} {
-		background-color: transparent !important;
-	}
-
-	#{class("tooltipPointer")} {
-		@include vibrancy($property: "border-top-color");
-	}
-}
-
 //// Backdrop
 #{class("backdrop")} {
 	backdrop-filter: blur(10px);
