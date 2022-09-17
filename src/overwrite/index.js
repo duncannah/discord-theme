@@ -41,16 +41,16 @@ const specialCases = [
 				hue === 38 || // mentionned
 				hue === 139 // "positive" text
 			) {
-				hue = "$custom-hue";
+				hue = "270deg";
 			} else return;
 
 			return [hue, saturation, lightness, alpha];
 		});
 
 		if (newVal !== property.value) {
-			arr.push(`${property.name}: #{${newVal}}`);
+			arr.push(`${property.name}: ${newVal}`);
 
-			if (property.name.startsWith("--")) arr.push(`${property.name}-bg: #{${newVal}}`);
+			if (property.name.startsWith("--")) arr.push(`${property.name}-bg: ${newVal}`);
 		}
 
 		return arr;

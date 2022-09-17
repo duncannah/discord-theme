@@ -6,7 +6,7 @@
 */
 
 $font-size-modifier: 0.9375;
-$custom-hue: 270deg;
+$custom-hue: 270deg; // also change this in overwrite/index.js
 
 @import "__gen/overwrite.scss";
 @import "syntax-highlighting/tokyo-night-dark.scss";
