@@ -258,3 +258,8 @@ body {
 		margin-right: 1px;
 	}
 }
+
+// Remove the ugly member since thing in the connections section of a profile
+#{class("discordMemberCreatedAt")} {
+	display: none;
+}
