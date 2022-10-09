@@ -249,3 +249,8 @@ body {
 #{class("discordMemberCreatedAt")} {
 	display: none;
 }
+
+// Disable grayscale effect for emojis
+#{class("emojiItemDisabled")} {
+	filter: none !important;
+}
