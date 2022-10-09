@@ -17,7 +17,12 @@ module.exports = async function () {
 					);
 				} else throw new Error("Could not find discord.css");
 			});
+	}
 
+	if (
+		process.argv.includes("--format-original") &&
+		!fs.existsSync(path.join("discord.legible.css"))
+	) {
 		console.log("Formatting discord.css...");
 		fs.writeFileSync(
 			path.join("discord.legible.css"),

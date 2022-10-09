@@ -24,4 +24,8 @@ pnpm run start
 
 # Watch for changes and transpile
 pnpm run dev
+
+
+# Format original css file
+pnpm run start --format-original
 ```
