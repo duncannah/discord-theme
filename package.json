@@ -4,7 +4,7 @@
 	"description": "",
 	"scripts": {
 		"start": "node src/index.js",
-		"dev": "nodemon --watch \"src/**\" -e \"scss,js,ts\" --ignore \"__gen/**\" -q src/index.js"
+		"start:dev": "nodemon --watch \"src/**\" -e \"scss,js,ts\" --ignore \"__gen/**\" -q src/index.js"
 	},
 	"keywords": [],
 	"author": "",
