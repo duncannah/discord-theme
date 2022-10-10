@@ -2,7 +2,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const prettier = require("prettier");
 
-async function fetch() {
+async function fetchCSS() {
 	console.log("Downloading discord.css...");
 	await fetch("https://discord.com/app")
 		.then((res) => res.text())
@@ -19,12 +19,12 @@ async function fetch() {
 }
 
 module.exports = async function () {
-	if (!fs.existsSync(path.join("discord.css"))) await fetch();
+	if (!fs.existsSync(path.join("discord.css"))) await fetchCSS();
 	else {
 		const stats = fs.statSync(path.join("discord.css"));
 		const diff = new Date().getTime() - stats.mtime.getTime();
 
-		if (diff > 1000 * 60 * 60 * 24) await fetch();
+		if (diff > 1000 * 60 * 60 * 24) await fetchCSS();
 	}
 
 	if (
