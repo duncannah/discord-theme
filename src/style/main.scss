@@ -250,6 +250,12 @@ body {
 	display: none;
 }
 
+// Make emoji selection bigger
+#{class("positionLayer")} {
+	zoom: 1.2;
+	transform: translate(40px, 10px);
+}
+
 // Disable grayscale effect for emojis
 #{class("emojiItemDisabled")} {
 	filter: none !important;
