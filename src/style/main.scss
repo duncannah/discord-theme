@@ -233,6 +233,11 @@ button,
 	background: rgba(0, 0, 0, 0.85) !important;
 }
 
+// Fix image modal backdrop
+#{class("carouselModal")} {
+	background-color: transparent !important;
+}
+
 #{class("appMount")},
 body {
 	text-rendering: geometricPrecision !important;
